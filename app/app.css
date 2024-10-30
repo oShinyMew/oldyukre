@@ -1,0 +1,49 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.slide-right {
+  animation-name: slideRight;
+  animation-duration: 0.3s;
+  animation-fill-mode: forwards;
+}
+
+.fade-in {
+  animation-name: fadeIn;
+  animation-duration: 0.3s;
+}
+
+.btn-primary {
+  background-color: #007AFF;
+  color: white;
+  font-weight: bold;
+  border-radius: 8;
+  padding: 12;
+}
+
+.btn-danger {
+  background-color: #FF3B30;
+  color: white;
+  font-weight: bold;
+  border-radius: 8;
+  padding: 12;
+}
+
+.version-tag {
+  background-color: #34C759;
+  color: white;
+  font-size: 12;
+  padding: 4 8;
+  border-radius: 4;
+}
+
+.progress-bar {
+  height: 4;
+  background-color: #E5E5EA;
+  border-radius: 2;
+}
+
+.progress-fill {
+  background-color: #007AFF;
+  border-radius: 2;
+}

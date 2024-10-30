@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="navigatingTo" class="bg-gray-900">
+    <ActionBar title="Yukre Toolkit" class="bg-gray-800 text-white">
+        <ActionItem ios.position="right" android.position="actionBar">
+            <Label text="&#xf013;" class="fas text-lg text-white" />
+        </ActionItem>
+    </ActionBar>
+
+    <ScrollView>
+        <StackLayout class="p-4">
+            <!-- System Status Card -->
+            <GridLayout rows="auto, auto" columns="*, *" class="bg-gray-800 rounded-lg p-4 m-2">
+                <Label text="System Status" row="0" col="0" colSpan="2" class="text-lg text-white font-bold mb-2" />
+                
+                <GridLayout rows="auto, auto, auto" columns="auto, *" row="1" col="0" class="m-1">
+                    <Label text="iOS Version:" row="0" col="0" class="text-gray-400" />
+                    <Label text="{{ systemStatus.deviceVersion }}" row="0" col="1" class="text-white text-right" />
+                    
+                    <Label text="Storage:" row="1" col="0" class="text-gray-400" />
+                    <Label text="{{ systemStatus.storageUsed }}" row="1" col="1" class="text-white text-right" />
+                    
+                    <Label text="Battery:" row="2" col="0" class="text-gray-400" />
+                    <Label text="{{ systemStatus.batteryLevel }}%" row="2" col="1" class="text-white text-right" />
+                </GridLayout>
+
+                <GridLayout rows="auto, auto, auto" columns="auto, *" row="1" col="1" class="m-1">
+                    <Label text="CPU Usage:" row="0" col="0" class="text-gray-400" />
+                    <Label text="{{ systemStatus.cpuUsage }}" row="0" col="1" class="text-white text-right" />
+                    
+                    <Label text="RAM:" row="1" col="0" class="text-gray-400" />
+                    <Label text="{{ systemStatus.ramUsage }}" row="1" col="1" class="text-white text-right" />
+                    
+                    <Label text="Network:" row="2" col="0" class="text-gray-400" />
+                    <Label text="{{ systemStatus.networkType }}" row="2" col="1" class="text-white text-right" />
+                </GridLayout>
+            </GridLayout>
+
+            <!-- Category Tabs -->
+            <ScrollView orientation="horizontal" class="m-2">
+                <StackLayout orientation="horizontal">
+                    <Button text="All" tap="{{ setCategory }}" param="all" 
+                            class="{{ selectedCategory === 'all' ? 'btn-primary' : 'text-white' }} m-1" />
+                    <Button text="System" tap="{{ setCategory }}" param="system"
+                            class="{{ selectedCategory === 'system' ? 'btn-primary' : 'text-white' }} m-1" />
+                    <Button text="Security" tap="{{ setCategory }}" param="security"
+                            class="{{ selectedCategory === 'security' ? 'btn-primary' : 'text-white' }} m-1" />
+                    <Button text="Network" tap="{{ setCategory }}" param="network"
+                            class="{{ selectedCategory === 'network' ? 'btn-primary' : 'text-white' }} m-1" />
+                    <Button text="Diagnostics" tap="{{ setCategory }}" param="diagnostics"
+                            class="{{ selectedCategory === 'diagnostics' ? 'btn-primary' : 'text-white' }} m-1" />
+                </StackLayout>
+            </ScrollView>
+
+            <!-- Tools List -->
+            <ListView items="{{ availableTools }}" class="list-group">
+                <ListView.itemTemplate>
+                    <GridLayout columns="*, auto" rows="auto, auto" class="bg-gray-800 rounded-lg p-4 m-2">
+                        <StackLayout row="0" col="0">
+                            <Label text="{{ name }}" class="text-white font-bold" />
+                            <Label text="{{ description }}" class="text-gray-400" />
+                        </StackLayout>
+                        <StackLayout row="0" col="1" orientation="horizontal">
+                            <Label text="{{ supportedVersions }}" class="version-tag m-r-2" />
+                            <Button text="Run" tap="{{ $parent.runTool }}" param="{{ id }}"
+                                    class="{{ isEnabled ? 'btn-primary' : 'btn-primary opacity-50' }}"
+                                    isEnabled="{{ isEnabled }}" />
+                        </StackLayout>
+                    </GridLayout>
+                </ListView.itemTemplate>
+            </ListView>
+        </StackLayout>
+    </ScrollView>
+</Page>
